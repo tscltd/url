@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const toLink = "https://dangth.dev";
+    // const toLink = "";
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search); // Lấy toàn bộ tham số trên URL
+      return urlParams.get(param); // Lấy giá trị của tham số cụ thể
+    }
+
+    if (toLink) {
+      window.onload = function () {
+        window.location.href = toLink;
+      };
+    }
+    else {
+      const redirectUrl = getQueryParam('redirect'); // Lấy giá trị của 'redirect'
+      alert(redirectUrl)
+      window.location.href = redirectUrl;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,33 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nỗ lực bứt phá trên hành trình công nghiệp hóa - hiện đại hóa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // Mảng chứa key để ánh xạ với đường dẫn
+        const keys = ["baocantho.com.vn/no-luc-but-pha...", "example1", "example2"];
+
+        // Mảng chứa các URL tương ứng với key
+        const links = [
+            "https://baocantho.com.vn/no-luc-but-pha-tren-hanh-trinh-cong-nghiep-hoa-hien-dai-hoa-a183168.html",
+            "https://example.com/link-1",
+            "https://example.com/link-2"
+        ];
+
+        /**
+         * Lấy tham số từ URL
+         * @param {string} param - Tên tham số cần lấy
+         * @returns {string|null} - Giá trị của tham số hoặc null nếu không tồn tại
+         */
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        window.onload = function () {
+            // Lấy giá trị tham số "redirect"
+            const redirectKey = getQueryParam('redirect');
+
+            if (redirectKey) {
+                // Tìm index của key trong mảng
+                const index = keys.indexOf(redirectKey);
+
+                if (index !== -1) {
+                    // Chuyển hướng đến URL tương ứng
+                    const redirectUrl = links[index];
+                    console.log("Chuyển hướng đến:", redirectUrl);
+                    window.location.href = redirectUrl;
+                } else {
+                    console.error("Key không hợp lệ:", redirectKey);
+                    alert("Liên kết không hợp lệ!");
+                }
+            } else {
+                console.warn("Không có tham số redirect!");
+                alert("Vui lòng cung cấp tham số redirect trên URL.");
+            }
+        };
+    </script>
 </head>
 
 <body>
-  <script>
-    const toLink = "https://baocantho.com.vn/no-luc-but-pha-tren-hanh-trinh-cong-nghiep-hoa-hien-dai-hoa-a183168.html";
-    // const toLink = "";
-
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search); // Lấy toàn bộ tham số trên URL
-      return urlParams.get(param); // Lấy giá trị của tham số cụ thể
-    }
-
-    if (toLink) {
-      window.onload = function () {
-        window.location.href = toLink;
-      };
-    }
-    else {
-      const redirectUrl = getQueryParam('redirect'); // Lấy giá trị của 'redirect'
-      alert(redirectUrl)
-      window.location.href = redirectUrl;
-    }
-  </script>
+    <h2>Đang chuyển hướng, vui lòng chờ...</h2>
 </body>
 
 </html>

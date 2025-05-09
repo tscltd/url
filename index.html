@@ -1,58 +1,31 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        // Mảng chứa key để ánh xạ với đường dẫn
-        const keys = ["baocantho.com.vn/no-luc-but-pha", "example1", "example2"];
+        const redirects = {
+            "baocantho.com.vn/no-luc-but-pha": "https://baocantho.com.vn/no-luc-but-pha-tren-hanh-trinh-cong-nghiep-hoa-hien-dai-hoa-a183168.html",
+            "hien-mau": "https://dangth.dev",
+            "example2": "https://example.com/link-2"
+        };
 
-        // Mảng chứa các URL tương ứng với key
-        const links = [
-            "https://baocantho.com.vn/no-luc-but-pha-tren-hanh-trinh-cong-nghiep-hoa-hien-dai-hoa-a183168.html",
-            "https://example.com/link-1",
-            "https://example.com/link-2"
-        ];
-
-        /**
-         * Lấy tham số từ URL
-         * @param {string} param - Tên tham số cần lấy
-         * @returns {string|null} - Giá trị của tham số hoặc null nếu không tồn tại
-         */
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
 
         window.onload = function () {
-            // Lấy giá trị tham số "redirect"
-            const redirectKey = getQueryParam('r');
-
-            if (redirectKey) {
-                // Tìm index của key trong mảng
-                const index = keys.indexOf(redirectKey);
-
-                if (index !== -1) {
-                    // Chuyển hướng đến URL tương ứng
-                    const redirectUrl = links[index];
-                    console.log("Chuyển hướng đến:", redirectUrl);
-                    window.location.href = redirectUrl;
-                } else {
-                    console.error("Key không hợp lệ:", redirectKey);
-                    alert("Liên kết không hợp lệ!");
-                }
+            const key = getQueryParam('r');
+            if (key && redirects[key]) {
+                window.location.href = redirects[key];
             } else {
-                console.warn("Không có tham số redirect!");
-                alert("Vui lòng cung cấp tham số redirect trên URL.");
+                alert("Liên kết không hợp lệ hoặc thiếu tham số!");
             }
         };
     </script>
 </head>
-
 <body>
-    <h2>Đang chuyển hướng, vui lòng chờ...</h2>
+    <p>Đang chuyển hướng, vui lòng chờ...</p>
 </body>
-
 </html>
